@@ -19,7 +19,7 @@ pip install --editable ./
 ```
 
 ## Training 
-We have the pre-processed data for IWSLT/WMT and the pre-trained encoder/decoder embedding at [data](https://drive.google.com/drive/u/0/folders/1JwaCMLaX2Amz5DftJ_nCr3glAqGTBdsV). 
+We have the pre-processed data for IWSLT/WMT and the pre-trained encoder/decoder embedding at [data](https://drive.google.com/file/d/1cqOP2FKn_z26lNu03Q6XZusYHDdNGLt4/view?usp=sharing). 
 
 To train a one-layer randomly weighted Transformer on IWSLT with one GPU, you can run the script below:
 ```
@@ -71,21 +71,13 @@ You can add the ``--encoder-embed-path data/iwslt_embed/encoder_embed.txt --deco
 ## Testing 
 To test on IWSLT, you can run the following script
 ```
-BEAM_SIZE=5
-python fairseq_cli/generate.py ${DATA_PATH} \
-        --path ${OUTPUT_PATH}/checkpoint_best.pt \
-        --batch-size 128  --beam ${BEAM_SIZE} \
-        --lenpen 1.0 --remove-bpe --log-format simple \
-        --source-lang de --target-lang en \
-    > {RESULT_PATH}/res.txt"
+python fairseq_cli/generate.py ${DATA_PATH} --path ${OUTPUT_PATH}/checkpoint_best.pt --batch-size 128  --beam 5 \
+        --lenpen 1.0 --remove-bpe --log-format simple --source-lang de --target-lang en > res.txt"
 ```
 To test on WMT, you can run the following script
 ```
 python scripts/average_checkpoints.py --inputs ${OUTPUT_PATH} --num-epoch-checkpoints 10 --output ${OUTPUT_PATH}/averaged_model.pt
-python fairseq_cli/generate.py ${DATA_PATH} \
-    --path ${OUTPUT_PATH}/averaged_model.pt \
-    --beam 5 --remove-bpe \
-    > ${RESULT_PATH}/res.txt
+python fairseq_cli/generate.py ${DATA_PATH} --path ${OUTPUT_PATH}/averaged_model.pt --beam 5 --remove-bpe > res.txt
 ```
 
 ## Citation
