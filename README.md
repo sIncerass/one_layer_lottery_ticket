@@ -1,5 +1,5 @@
 # Introduction
-This repo contains the code for the paper "What’s Hidden in a One-layer Randomly Weighted Transformer?" at EMNLP 2021 (short) main conference. 
+This repo contains the code for the paper ["What’s Hidden in a One-layer Randomly Weighted Transformer?"](https://arxiv.org/pdf/2109.03939.pdf) at EMNLP 2021 (short) main conference. 
 
 We demonstrate that one-layer randomly weighted Transformer contain subnet-works that can achieve impressive performance **without ever modifying the weight values**  on  machine  translation  tasks. 
 
